@@ -1,13 +1,18 @@
-const User = require("../Models/UserModel");
+
+const UserRepository = require('../Repositories/UserRepository'); // Asegúrate de que esta ruta sea correcta
 
 class UserService {
-    constructor(UserRepository) {
-        this.UserRepository = UserRepository;
+    constructor(userRepository) {
+        this.userRepository = userRepository;
     }
 
-    ObtenerUser() {
-        return this.UserRepository.ObtenerUser();
+    async ObtenerUser() {
+        return await this.userRepository.getUsers(); // Asegúrate de usar el método correcto
     }
 }
+
+// Puedes crear una instancia de UserService y exportarla
+const userService = new UserService(new UserRepository());
+module.exports = userService;
 
 module.exports = UserService;
