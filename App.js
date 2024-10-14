@@ -13,9 +13,18 @@ const busproductoRoutes = require('./routes/Buscador_Routers');
 const NuevosProductos = require('./routes/NuevoProducto_Router');
 const ActNuevosProductos = require('./routes/ActualizarProd_Routers');
 const EliminarProductoRoutes = require('./routes/EliminarProducto_Router');
+const allowed = [
+'https://alexYah064.githhub.io'
+
+]
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+    origin : allowed,
+    methods : ['GET', 'POST', 'PUT'],
+    credentials : true
+}
+));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static('Models')); // Asegúrate de que la carpeta 'Models' exista
