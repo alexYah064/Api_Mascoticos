@@ -2,32 +2,34 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
-const body = require('body-parser')
+const body = require('body-parser');
 
-const authController = require('../apiv.1/Controllers/authController');
-const userController = require('../apiv.1/Controllers/userController')
+// Controladores
+const authController = require('./Controllers/authController'); // Corregido el path
+const userController = require('./Controllers/userController'); // Corregido el path
 
 // Importar las rutas
 const busproductoRoutes = require('./routes/Buscador_Routers');
 const NuevosProductos = require('./routes/NuevoProducto_Router');
 const ActNuevosProductos = require('./routes/ActualizarProd_Routers');
-const EliminarProductoRoutes = require('./routes/EliminarProducto_Router'); // Agregado
+const EliminarProductoRoutes = require('./routes/EliminarProducto_Router');
 
 // Middlewares
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.static('Models'))
-app.use(body.urlencoded({extended: false}))
-app.use(body.json()) 
+app.use(express.static('Models')); // Asegúrate de que la carpeta 'Models' exista
+app.use(body.urlencoded({ extended: false }));
+app.use(body.json()); 
 
 // Rutas
 app.use('/api', busproductoRoutes);
 app.use('/api', NuevosProductos);
 app.use('/api', ActNuevosProductos);
-app.use('/api', EliminarProductoRoutes); // Agregado
-app.use('/api', authController);  // Ruta para que se fokin logien
-app.use('/api', userController);  // Rutas de Usuaroskis
+app.use('/api', EliminarProductoRoutes);
+app.use('/api/auth', authController);  // Ruta para login
+app.use('/api/users', userController); // Rutas para usuarios
+
 // Puerto
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
