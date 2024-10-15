@@ -15,7 +15,7 @@ const ActNuevosProductos = require('./routes/ActualizarProd_Routers');
 const EliminarProductoRoutes = require('./routes/EliminarProducto_Router');
 
 const allowed = [
-    'https://alexYah064.github.io', // Asegúrate de que está escrito correctamente
+    'https://alexyah064.github.io', // Asegúrate de que está escrito correctamente
     'http://127.0.0.1:5501', // Permite solicitudes desde localhost
     'http://localhost:5501' // Permite otro posible origen local
 ];
