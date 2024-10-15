@@ -14,9 +14,9 @@ const NuevosProductos = require('./routes/NuevoProducto_Router');
 const ActNuevosProductos = require('./routes/ActualizarProd_Routers');
 const EliminarProductoRoutes = require('./routes/EliminarProducto_Router');
 const allowed = [
-'https://alexYah064.githhub.io'
-
-]
+    'https://alexYah064.githhub.io'  
+    ];
+    
 
 // Middlewares
 app.use(cors({
