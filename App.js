@@ -13,18 +13,25 @@ const busproductoRoutes = require('./routes/Buscador_Routers');
 const NuevosProductos = require('./routes/NuevoProducto_Router');
 const ActNuevosProductos = require('./routes/ActualizarProd_Routers');
 const EliminarProductoRoutes = require('./routes/EliminarProducto_Router');
-const allowed = [
-    'https://alexYah064.githhub.io'  
-    ];
-    
 
-// Middlewares
+const allowed = [
+    'https://alexYah064.github.io', // Asegúrate de que está escrito correctamente
+    'http://127.0.0.1:5501', // Permite solicitudes desde localhost
+    'http://localhost:5501' // Permite otro posible origen local
+];
+
 app.use(cors({
-    origin : allowed,
-    methods : ['GET', 'POST', 'PUT'],
-    credentials : true
-}
-));
+    origin: function (origin, callback) {
+        if (allowed.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('No permitido por CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT'],
+    credentials: true
+}));
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static('Models')); // Asegúrate de que la carpeta 'Models' exista
