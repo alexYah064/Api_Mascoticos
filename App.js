@@ -41,12 +41,12 @@ app.use(body.urlencoded({ extended: false }));
 app.use(body.json()); 
 
 // Rutas
-app.use('/api', busproductoRoutes);
-app.use('/api', NuevosProductos);
-app.use('/api', ActNuevosProductos);
-app.use('/api', EliminarProductoRoutes);
-app.use('/api/auth', authController);  
-app.use('/api/users', userController); 
+app.use('/', busproductoRoutes);
+app.use('/', NuevosProductos);
+app.use('/', ActNuevosProductos);
+app.use('/', EliminarProductoRoutes);
+app.use('/', authController);  
+app.use('/', userController); 
 
 // Puerto
 const PORT = process.env.PORT || 3000;
