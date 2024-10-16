@@ -3,10 +3,11 @@ const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 const body = require('body-parser');
-
+const swaggerUI = require('swagger-ui-express')
+const specs = require('./swagger/swagger.js')
 // Controladores
-const authController = require('./Controllers/authController'); // Corregido el path
-const userController = require('./Controllers/userController'); // Corregido el path
+const authController = require('./Controllers/authController'); 
+const userController = require('./Controllers/userController'); 
 
 // Importar las rutas
 const busproductoRoutes = require('./routes/Buscador_Routers');
@@ -15,9 +16,9 @@ const ActNuevosProductos = require('./routes/ActualizarProd_Routers');
 const EliminarProductoRoutes = require('./routes/EliminarProducto_Router');
 
 const allowed = [
-    'https://alexyah064.github.io', // Asegúrate de que está escrito correctamente
-    'http://127.0.0.1:5501', // Permite solicitudes desde localhost
-    'http://localhost:5501' // Permite otro posible origen local
+    'https://alexyah064.github.io', 
+    'http://127.0.0.1:5501', 
+    'http://localhost:3000'
 ];
 
 app.use(cors({
@@ -32,9 +33,10 @@ app.use(cors({
     credentials: true
 }));
 
+app.use("/docs", swaggerUI.serve,swaggerUI.setup(specs))
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.static('Models')); // Asegúrate de que la carpeta 'Models' exista
+app.use(express.static('Models')); 
 app.use(body.urlencoded({ extended: false }));
 app.use(body.json()); 
 
@@ -43,8 +45,8 @@ app.use('/api', busproductoRoutes);
 app.use('/api', NuevosProductos);
 app.use('/api', ActNuevosProductos);
 app.use('/api', EliminarProductoRoutes);
-app.use('/api/auth', authController);  // Ruta para login
-app.use('/api/users', userController); // Rutas para usuarios
+app.use('/api/auth', authController);  
+app.use('/api/users', userController); 
 
 // Puerto
 const PORT = process.env.PORT || 3000;

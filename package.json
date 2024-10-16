@@ -2,7 +2,6 @@
   "name": "apiv.1",
   "version": "1.0.0",
   "main": "App.js",
-
   "scripts": {
     "start": "node App.js"
   },
@@ -19,6 +18,8 @@
     "fs-extra": "^11.2.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
-    "stack": "^0.1.0"
+    "stack": "^0.1.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   }
 }
