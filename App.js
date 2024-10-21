@@ -3,8 +3,10 @@ const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 const body = require('body-parser');
-const swaggerUI = require('swagger-ui-express')
-const specs = require('./swagger/swagger.js')
+const swaggerUI = require('swagger-ui-express');
+const specs = require('./swagger/swagger.js');
+const env = require('dotenv').config();
+
 // Controladores
 const authController = require('./Controllers/authController'); 
 const userController = require('./Controllers/userController'); 
@@ -49,7 +51,7 @@ app.use('/', authController);
 app.use('/', userController); 
 
 // Puerto
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
