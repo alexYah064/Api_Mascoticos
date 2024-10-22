@@ -61,7 +61,7 @@ app.listen(PORT, () => {
 const db_host= process.env.db_host;
 const db_user = process.env.db_user;
 const db_password= process.env.db_password;
-const db_name= procces.env.db_name;
+const db_name= process.env.db_name;
 
 const db = mysql.createConnection(
     {
