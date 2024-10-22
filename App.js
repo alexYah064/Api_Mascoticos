@@ -6,6 +6,7 @@ const body = require('body-parser');
 const swaggerUI = require('swagger-ui-express');
 const specs = require('./swagger/swagger.js');
 const env = require('dotenv').config();
+const mysql = require('mysql2');
 
 // Controladores
 const authController = require('./Controllers/authController'); 
@@ -55,3 +56,26 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
+
+//DB
+const db_host= process.env.db_host;
+const db_user = procces.env.db_user;
+const db_password= process.env.db_password;
+const db_name= procces.env.db_name;
+
+const db = mysql.createConnection(
+    {
+        host: db_host,
+        user: db_user,
+        password: db_password,
+        database: db_name,
+    }
+)
+
+db.connect((err)=>{
+    if(err){
+        throw err;
+    }
+    console.log('Tu base de datos es insana broski'  )
+})
+
